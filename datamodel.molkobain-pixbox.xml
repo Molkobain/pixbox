@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.6">
+  <classes>
+    <class id="Post" _delta="define">
+      <properties>
+        <category>bizmodel,searchable</category>
+        <abstract>false</abstract>
+        <db_table>post</db_table>
+        <icon>
+          <fileref ref="location_7fbae41f1006083b8de8934c801cd9c5"/>
+        </icon>
+        <order>
+          <columns>
+            <column id="creation_date" ascending="false" />
+          </columns>
+        </order>
+      </properties>
+      <fields>
+        <field id="author_id" xsi:type="AttributeExternalKey">
+          <sql>author_id</sql>
+          <filter/>
+          <dependencies/>
+          <is_null_allowed>false</is_null_allowed>
+          <target_class>Person</target_class>
+          <on_target_delete>DEL_AUTO</on_target_delete>
+          <tracking_level/>
+        </field>
+        <field id="message" xsi:type="AttributeText">
+          <sql>message</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+          <validation_pattern/>
+          <width/>
+          <height/>
+          <tracking_level>all</tracking_level>
+        </field>
+        <field id="creation_date" xsi:type="AttributeDateTime">
+          <sql>creation_date</sql>
+          <default_value/>
+          <is_null_allowed>false</is_null_allowed>
+          <tracking_level>all</tracking_level>
+        </field>
+        <field id="read_date" xsi:type="AttributeDateTime">
+          <sql>read_date</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+          <tracking_level>all</tracking_level>
+        </field>
+        <field id="status" xsi:type="AttributeEnum">
+          <sql>status</sql>
+          <values>
+            <value id="draft">draft</value>
+            <value id="sent">sent</value>
+            <value id="viewed">viewed</value>
+          </values>
+          <default_value>draft</default_value>
+          <is_null_allowed>false</is_null_allowed>
+          <display_style/>
+          <dependencies/>
+          <tracking_level>all</tracking_level>
+        </field>
+      </fields>
+      <methods/>
+      <presentation>
+        <list>
+          <items>
+            <item id="author_id">
+              <rank>10</rank>
+            </item>
+            <item id="message">
+              <rank>20</rank>
+            </item>
+            <item id="creation_date">
+              <rank>30</rank>
+            </item>
+            <item id="read_date">
+              <rank>40</rank>
+            </item>
+            <item id="status">
+              <rank>50</rank>
+            </item>
+          </items>
+        </list>
+        <search>
+          <items>
+            <item id="status">
+              <rank>10</rank>
+            </item>
+          </items>
+        </search>
+        <details>
+          <items>
+            <item id="author_id">
+              <rank>10</rank>
+            </item>
+            <item id="message">
+              <rank>20</rank>
+            </item>
+            <item id="creation_date">
+              <rank>30</rank>
+            </item>
+            <item id="read_date">
+              <rank>40</rank>
+            </item>
+            <item id="status">
+              <rank>50</rank>
+            </item>
+          </items>
+        </details>
+        <default_search>
+          <items>
+            <item id="author_id">
+              <rank>10</rank>
+            </item>
+            <item id="creation_date">
+              <rank>20</rank>
+            </item>
+            <item id="read_date">
+              <rank>30</rank>
+            </item>
+            <item id="status">
+              <rank>40</rank>
+            </item>
+          </items>
+        </default_search>
+      </presentation>
+      <parent>cmdbAbstractObject</parent>
+      <lifecycle>
+        <attribute>status</attribute>
+        <stimuli>
+          <stimulus id="ev_send" xsi:type="StimulusUserAction"/>
+          <stimulus id="ev_view" xsi:type="StimulusUserAction"/>
+        </stimuli>
+        <states>
+          <state id="draft">
+            <flags/>
+            <transitions>
+              <transition id="ev_send">
+                <stimulus>ev_send</stimulus>
+                <target>sent</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="sent">
+            <flags/>
+            <transitions>
+              <transition id="ev_view">
+                <stimulus>ev_view</stimulus>
+                <target>viewed</target>
+                <actions/>
+              </transition>
+            </transitions>
+          </state>
+          <state id="viewed">
+            <flags/>
+            <transitions/>
+          </state>
+        </states>
+      </lifecycle>
+    </class>
+  </classes>
+  <dictionaries>
+    <dictionary id="EN US" _delta="must_exist">
+      <entries>
+        <entry id="Class:Post" _delta="define"><![CDATA[Post]]></entry>
+        <entry id="Class:Post+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:author_id" _delta="define"><![CDATA[Author]]></entry>
+        <entry id="Class:Post/Attribute:author_id+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:message" _delta="define"><![CDATA[Message]]></entry>
+        <entry id="Class:Post/Attribute:message+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:creation_date" _delta="define"><![CDATA[Creation date]]></entry>
+        <entry id="Class:Post/Attribute:creation_date+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:read_date" _delta="define"><![CDATA[Viewed on]]></entry>
+        <entry id="Class:Post/Attribute:read_date+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:status" _delta="define"><![CDATA[Status]]></entry>
+        <entry id="Class:Post/Attribute:status+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:status/Value:draft" _delta="define"><![CDATA[Draft]]></entry>
+        <entry id="Class:Post/Attribute:status/Value:sent" _delta="define"><![CDATA[Sent]]></entry>
+        <entry id="Class:Post/Attribute:status/Value:viewed" _delta="define"><![CDATA[Viewed]]></entry>
+        <entry id="Class:Post/Stimulus:ev_send" _delta="define"><![CDATA[Send]]></entry>
+        <entry id="Class:Post/Stimulus:ev_view" _delta="define"><![CDATA[Mark as viewed]]></entry>
+        <entry id="portal:pixbox-portal" _delta="define"><![CDATA[Pixbox]]></entry>
+        <entry id="Portal:Button:Submit" _delta="force"><![CDATA[Save as draft]]></entry>
+      </entries>
+    </dictionary>
+    <dictionary id="FR FR" _delta="must_exist">
+      <entries>
+        <entry id="Class:Post" _delta="define"><![CDATA[Publication]]></entry>
+        <entry id="Class:Post+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:author_id" _delta="define"><![CDATA[Auteur]]></entry>
+        <entry id="Class:Post/Attribute:author_id+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:message" _delta="define"><![CDATA[Message]]></entry>
+        <entry id="Class:Post/Attribute:message+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:creation_date" _delta="define"><![CDATA[Date de création]]></entry>
+        <entry id="Class:Post/Attribute:creation_date+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:read_date" _delta="define"><![CDATA[Lu le]]></entry>
+        <entry id="Class:Post/Attribute:read_date+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:status" _delta="define"><![CDATA[Statut]]></entry>
+        <entry id="Class:Post/Attribute:status+" _delta="define"><![CDATA[]]></entry>
+        <entry id="Class:Post/Attribute:status/Value:draft" _delta="define"><![CDATA[Brouillon]]></entry>
+        <entry id="Class:Post/Attribute:status/Value:sent" _delta="define"><![CDATA[Envoyé]]></entry>
+        <entry id="Class:Post/Attribute:status/Value:viewed" _delta="define"><![CDATA[Vu]]></entry>
+        <entry id="Class:Post/Stimulus:ev_send" _delta="define"><![CDATA[Envoyer]]></entry>
+        <entry id="Class:Post/Stimulus:ev_view" _delta="define"><![CDATA[Marquer comme lu]]></entry>
+        <entry id="portal:pixbox-portal" _delta="define"><![CDATA[Pixbox]]></entry>
+        <entry id="Portal:Button:Submit" _delta="force"><![CDATA[Enreg. comme brouillon]]></entry>
+      </entries>
+    </dictionary>
+  </dictionaries>
+  <files>
+    <file id="location_7fbae41f1006083b8de8934c801cd9c5" xsi:type="File" _delta="define_if_not_exists">
+      <name>images/location.png</name>
+      <mime_type>image/png</mime_type>
+      <width>48</width>
+      <height>48</height>
+      <data>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</data>
+    </file>
+  </files>
+  <user_rights>
+    <profiles>
+      <profile id="15" _delta="define">
+        <name>Post author</name>
+        <description>Can create and publish posts</description>
+        <groups>
+          <group id="Post">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+              <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+              <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+              <action id="stimulus:ev_send">allow</action>
+            </actions>
+          </group>
+        </groups>
+      </profile>
+      <profile id="16" _delta="define">
+        <name>Post reader</name>
+        <description>Can view published posts</description>
+        <groups/>
+      </profile>
+    </profiles>
+    <groups>
+      <group id="Post" _delta="define">
+        <classes>
+          <class id="Post"/>
+          <class id="Contact"/>
+          <class id="Organization"/>
+        </classes>
+      </group>
+    </groups>
+  </user_rights>
+  <portals>
+    <portal id="itop-portal" _delta="delete"/>
+    <portal id="pixbox-reader" _delta="define">
+      <url>pages/exec.php/pixbox/reader/posts-reader?exec_module=itop-portal-base&amp;exec_page=index.php&amp;portal_id=pixbox-portal</url>
+      <rank>0.5</rank>
+      <handler/>
+      <allow>
+        <profile id="Post reader" />
+      </allow>
+      <deny/>
+    </portal>
+    <portal id="pixbox-portal" _delta="define">
+      <url>pages/exec.php?exec_module=itop-portal-base&amp;exec_page=index.php&amp;portal_id=pixbox-portal</url>
+      <rank>1.0</rank>
+      <handler/>
+      <allow>
+		</allow>
+      <deny/>
+    </portal>
+  </portals>
+  <module_designs>
+    <module_design id="itop-portal" _delta="delete"/>
+    <module_design id="pixbox-portal" xsi:type="portal" _delta="define">
+      <properties>
+        <themes>
+          <theme id="molkobain-pixbox">molkobain-pixbox/public/css/default.scss</theme>
+        </themes>
+      </properties>
+      <bricks>
+        <brick id="user-profile" xsi:type="Combodo\iTop\Portal\Brick\UserProfileBrick">
+          <rank>
+            <default>1</default>
+          </rank>
+          <title>
+            <default>Brick:Portal:UserProfile:Navigation:Dropdown:MyProfil</default>
+          </title>
+          <decoration_class>
+            <default>fa fa-user fa-2x</default>
+          </decoration_class>
+          <form>
+            <fields/>
+            <twig>
+              <div class="form_field" data-field-id="first_name" data-field-flags="read_only"/>
+              <div class="form_field" data-field-id="name" data-field-flags="read_only"/>
+              <div class="form_field" data-field-id="email" data-field-flags="read_only"/>
+            </twig>
+          </form>
+        </brick>
+        <brick id="new-post" xsi:type="Combodo\iTop\Portal\Brick\CreateBrick">
+          <rank>
+            <default>10</default>
+          </rank>
+          <width>6</width>
+          <title>
+            <default>Nouvelle publication</default>
+          </title>
+          <description>Préparer un nouvel envoi de photos</description>
+          <decoration_class>
+            <default>fa fa-camera fa-2x</default>
+          </decoration_class>
+          <modal>true</modal>
+          <class>Post</class>
+          <rules>
+            <rule id="contact-to-post"/>
+            <rule id="go-to-posts"/>
+          </rules>
+          <security>
+            <allowed_profiles><![CDATA[SELECT URP_Profiles WHERE name IN ('Post author', 'Administrator')]]></allowed_profiles>
+          </security>
+        </brick>
+        <brick id="manage-posts" xsi:type="Combodo\iTop\Portal\Brick\ManageBrick">
+          <rank>
+            <default>20</default>
+          </rank>
+          <width>6</width>
+          <title>
+            <default>Publications</default>
+          </title>
+          <description>Valider ou revoir vos publications</description>
+          <decoration_class>
+            <default>fa fa-picture-o fa-2x</default>
+          </decoration_class>
+          <oql><![CDATA[SELECT Post]]></oql>
+          <fields>
+            <field id="author_id_friendlyname"/>
+            <field id="message"/>
+            <field id="creation_date"/>
+            <field id="status"/>
+            <field id="read_date"/>
+          </fields>
+          <data_loading>full</data_loading>
+          <security>
+            <allowed_profiles><![CDATA[SELECT URP_Profiles WHERE name IN ('Post author', 'Administrator')]]></allowed_profiles>
+          </security>
+        </brick>
+        <brick id="posts-reader" xsi:type="Molkobain\iTop\Extension\Pixbox\Portal\Brick\ReaderBrick">
+          <rank>
+            <default>30</default>
+          </rank>
+          <width>12</width>
+          <title>
+            <default>Lecteur</default>
+          </title>
+          <description>Afficher en plein écran les publications qui vous ont été envoyées</description>
+          <decoration_class>
+            <default>fa fa-youtube-play fa-2x</default>
+          </decoration_class>
+          <security>
+            <allowed_profiles><![CDATA[SELECT URP_Profiles WHERE name IN ('Post reader', 'Administrator')]]></allowed_profiles>
+          </security>
+        </brick>
+      </bricks>
+      <forms>
+        <form id="post-create">
+          <class>Post</class>
+          <properties>
+            <always_show_submit>true</always_show_submit>
+          </properties>
+          <fields/>
+          <twig>
+            <div class="form_field" data-field-id="author_id" data-field-flags="read_only"/>
+            <div class="form_field" data-field-id="message"/>
+          </twig>
+          <modes>
+            <mode id="create"/>
+          </modes>
+        </form>
+        <form id="post-edit">
+          <class>Post</class>
+          <properties>
+            <always_show_submit>true</always_show_submit>
+          </properties>
+          <fields/>
+          <twig>
+            <div class="row">
+              <div class="col-sm-6">
+                <fieldset>
+                  <legend>Informations générales</legend>
+                  <div class="form_field" data-field-id="author_id" data-field-flags="read_only"/>
+                  <div class="form_field" data-field-id="status" data-field-flags="read_only"/>
+                </fieldset>
+              </div>
+              <div class="col-sm-6">
+                <fieldset>
+                  <legend>Info. supplémentaires</legend>
+                  <div class="form_field" data-field-id="creation_date" data-field-flags="read_only"/>
+                  <div class="form_field" data-field-id="read_date" data-field-flags="read_only"/>
+                </fieldset>
+              </div>
+            </div>
+            <div class="form_field" data-field-id="message" data-field-flags=""/>
+          </twig>
+          <modes>
+            <mode id="view"/>
+            <mode id="edit"/>
+          </modes>
+        </form>
+      </forms>
+      <classes>
+        <class id="Contact">
+          <scopes>
+            <scope id="view-my-familly">
+              <oql_view><![CDATA[SELECT Contact WHERE org_id = :current_contact->org_id]]></oql_view>
+            </scope>
+            <scope id="all">
+              <oql_view><![CDATA[SELECT Contact WHERE org_id = :current_contact->org_id]]></oql_view>
+              <allowed_profiles>
+                <allowed_profile id="Administrator" />
+              </allowed_profiles>
+            </scope>
+          </scopes>
+        </class>
+        <class id="Post">
+          <scopes>
+            <scope id="view-posts">
+              <oql_view><![CDATA[SELECT Post WHERE status IN ('sent', 'viewed')]]></oql_view>
+              <allowed_profiles>
+                <allowed_profile id="Post reader"/>
+              </allowed_profiles>
+            </scope>
+            <scope id="manage-my-posts">
+              <oql_view><![CDATA[SELECT Post WHERE author_id = :current_contact_id]]></oql_view>
+              <oql_edit><![CDATA[SELECT Post]]></oql_edit>
+              <allowed_profiles>
+                <allowed_profile id="Post author"/>
+              </allowed_profiles>
+            </scope>
+            <scope id="all">
+              <oql_view><![CDATA[SELECT Post]]></oql_view>
+              <oql_edit><![CDATA[SELECT Post]]></oql_edit>
+              <allowed_profiles>
+                <allowed_profile id="Administrator"/>
+              </allowed_profiles>
+            </scope>
+          </scopes>
+        </class>
+      </classes>
+      <action_rules>
+        <action_rule id="contact-to-post">
+          <source_oql><![CDATA[SELECT Contact AS C WHERE C.id = :current_contact_id]]></source_oql>
+          <presets>
+            <!-- Only set() and copy() are supported for now -->
+	          <preset id="1">set(author_id, $current_contact_id$)</preset>
+          </presets>
+          <retrofits/>
+        </action_rule>
+        <action_rule id="go-to-posts">
+          <submit xsi:type="goto">
+            <brick>manage-posts</brick>
+          </submit>
+        </action_rule>
+      </action_rules>
+    </module_design>
+  </module_designs>
+</itop_design>

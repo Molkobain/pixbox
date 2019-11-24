@@ -1,0 +1,80 @@
+/* Vars */
+/* - Colors */
+$color-camel-yellow: #d5a77d !default;
+$color-petrol-blue: #122442 !default;
+/* - Functional */
+$user-message-font-size: 2rem !default;
+$user-message-color: $color-petrol-blue;
+$user-message-bg-color: $color-camel-yellow;
+$user-message-btn-color: white;
+$user-message-btn-bg-color: $color-petrol-blue;
+
+/* Helpers */
+.mp-maximum-space{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.molkobain-pixbox-reader-container{
+	flex-direction: column;
+	background-color: $user-message-bg-color;
+	color: $user-message-color;
+
+	.mpr-kickstart,
+	.mpr-loader{
+		text-align: center;
+		font-size: $user-message-font-size;
+	}
+	.mpr-kickstart{
+		#mpr-kickstart-button{
+			margin-top: 3rem;
+			padding: 0.5rem 2rem;
+			border: none;
+			border-radius: 4px;
+			background-color: $user-message-btn-bg-color;
+			color: $user-message-btn-color;
+			box-shadow: 0px 0 6px 0px rgba(0,0,0,0.6);
+		}
+	}
+	.mpr-loader{
+		display: none;
+
+		.mpr-loader-text{
+		}
+		.mpr-loader-animation{
+			.mpr-l-gears{
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 5rem;
+				margin-left: 19rem;
+				height: 5rem;
+
+				.fa-cog{
+					position: absolute;
+					top: 0;
+					left: 0;
+					font-size: 5rem;
+				}
+				.fa-cog:nth-child(2){
+					top: -1rem;
+					left: 4.3rem;
+					font-size: 3.5rem;
+				}
+				.fa-cog:nth-child(3){
+					top: 2.1rem;
+					left: 4.9rem;
+					font-size: 2rem;
+				}
+			}
+		}
+	}
+
+	.mpr-reader{
+		display: none;
+	}
+}

@@ -1,0 +1,50 @@
+{# itop-portal-base/portal/src/views/bricks/browse/layout.html.twig #}
+{# Reader brick base layout #}
+{% extends 'itop-portal-base/portal/src/views/layout.html.twig' %}
+
+{% block pStyleinline %}
+	{{ parent() }}
+	<style>
+		html, body{
+			height: 100%;
+			font-size: 14px;
+		}
+	</style>
+{% endblock %}
+
+{% block pPageScripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ app['combodo.modules.absolute_url'] ~ '/molkobain-pixbox/public/js/reader.js'|add_itop_version }}"></script>
+{% endblock %}
+
+{% block pNavigationWrapper %}{% endblock %}
+
+{% block pMainWrapper%}
+	<div class="molkobain-pixbox-reader-container mp-maximum-space">
+		<div class="mpr-kickstart">
+			<div>Pour démarrer la boîte, appuie sur le bouton.</div>
+			<button id="mpr-kickstart-button"><span class="fa fa-bolt"></span></button>
+		</div>
+		<div class="mpr-reader">
+
+		</div>
+		<div class="mpr-loader">
+			<div class="mpr-loader-text">
+				<div>Coucou Mami!</div>
+				<div>Tout se met en place, ca sera prêt dans un instant ❤</div>
+			</div>
+			<div class="mpr-loader-animation">
+				<div class="mpr-l-gears">
+					<span class="fa fa-cog fa-spin fa-fw"></span>
+					<span class="fa fa-cog fa-spin fa-fw"></span>
+					<span class="fa fa-cog fa-spin fa-fw"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block pPageReadyScripts %}
+	{{ parent() }}
+	$('.molkobain-pixbox-reader-container').pixbox_reader();
+{% endblock %}
