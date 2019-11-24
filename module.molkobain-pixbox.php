@@ -24,6 +24,7 @@ SetupWebPage::AddModule(
 		//
 		'datamodel' => array(
 			'model.molkobain-pixbox.php',
+			'src/Extension/ApplicationObjectExtension.php',
 			'src/Brick/ReaderBrick.php',
 			'src/Controller/ReaderBrickController.php',
 			'src/Router/ReaderBrickRouter.php',
@@ -38,5 +39,12 @@ SetupWebPage::AddModule(
 		//
 		'doc.manual_setup' => '', // hyperlink to manual setup documentation, if any
 		'doc.more_information' => '', // hyperlink to more information, if any
+
+		// Default settings
+		//
+		'settings' => array(
+			'picture_max_width' => 1920,
+			'post_reader_days_of_history' => 30,
+		),
 	)
 );

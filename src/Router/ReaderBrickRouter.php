@@ -18,6 +18,11 @@ class ReaderBrickRouter extends AbstractRouter
 			'bind' => 'p_pixbox_reader',
 			'values' => array()
 		),
+		array('pattern' => '/pixbox/reader/{sBrickId}/next-posts',
+			'callback' => 'Molkobain\\iTop\\Extension\\Pixbox\\Portal\\Controller\\ReaderBrickController::GetNextPosts',
+			'bind' => 'p_pixbox_reader_get_next_posts',
+			'values' => array()
+		),
 	);
 
 }
